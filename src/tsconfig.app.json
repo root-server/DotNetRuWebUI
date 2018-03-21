@@ -3,6 +3,11 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
+    "paths": {
+      "@dotnetru/*": [
+        "app/components/*/index"
+      ]
+    },
     "module": "es2015",
     "types": []
   },
