@@ -8,7 +8,13 @@ import {
     MatOptionModule,
     MatSelectModule,
     MatDatepickerModule,
+    MatListModule,
 } from '@angular/material';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+
+import { PipesModule } from '@dotnetru/pipes';
+import { CommunityModule } from '@dotnetru/community';
+import { VenueModule } from '@dotnetru/venue';
 
 import { MeetupComponent } from './meetup.component';
 
@@ -25,6 +31,11 @@ import { MeetupComponent } from './meetup.component';
         MatOptionModule,
         MatSelectModule,
         MatDatepickerModule,
+        MatListModule,
+
+        PipesModule,
+        CommunityModule,
+        VenueModule,
     ],
     exports: [
         MeetupComponent

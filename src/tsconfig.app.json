@@ -6,6 +6,9 @@
     "paths": {
       "@dotnetru/*": [
         "app/components/*/index"
+      ],
+      "@dotnetru/pipes": [
+        "app/pipes/index"
       ]
     },
     "module": "es2015",

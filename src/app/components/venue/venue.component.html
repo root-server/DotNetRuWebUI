@@ -1,0 +1,11 @@
+<mat-card class="venue-card">
+    <mat-card-header>
+        <mat-card-title>{{ venue.name }}</mat-card-title>
+        <mat-card-subtitle>{{ venue.id }}</mat-card-subtitle>
+    </mat-card-header>
+    <iframe mat-card-image
+            width="560"
+            height="400"
+            frameborder="0"
+            [src]="(venue.mapUrl | yandexMapsToWidget)"></iframe>
+</mat-card>

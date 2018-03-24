@@ -5,6 +5,9 @@
     "paths": {
       "@dotnetru/*": [
         "./src/app/components/*/index"
+      ],
+      "@dotnetru/pipes": [
+        "./src/app/pipes/index"
       ]
     },
     "outDir": "./dist/out-tsc",

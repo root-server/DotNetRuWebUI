@@ -1,36 +1,61 @@
 <form class="meetup-container">
-    <mat-grid-list cols="1"
-                   rowHeight="60px">
+    <mat-grid-list cols="3">
         <mat-grid-tile>
-            <mat-form-field>
-                <mat-select name="communityId"
-                            placeholder="Сообщество"
-                            [(ngModel)]="meetup.communityId">
-                    <mat-option *ngFor="let community of communities | async"
-                                [value]="community.id">
-                        {{ community.name }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </mat-grid-tile>
+            <mat-list>
+                <mat-list-item>
+                    <mat-form-field>
+                        <mat-select name="communityId"
+                                    placeholder="Сообщество"
+                                    [(ngModel)]="meetup.communityId">
+                            <mat-option *ngFor="let community of communities | async"
+                                        [value]="community.id">
+                                {{ community.name }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-form-field>
+                        <input matInput
+                               name="id"
+                               placeholder="Идентификатор Встечи"
+                               [(ngModel)]="meetup.id">
+                    </mat-form-field>
+                </mat-list-item>
 
-        <mat-grid-tile>
-            <mat-form-field>
-                <input matInput
-                       name="id"
-                       placeholder="Идентификатор Встечи"
-                       [(ngModel)]="meetup.id">
-            </mat-form-field>
-        </mat-grid-tile>
+                <!-- <mat-list-item>
+                            <mat-form-field>
+                                <input name="meetupMoment"
+                                       matInput
+                                       [matDatepicker]="datepicker"
+                                       [(ngModel)]="meetupMoment">
+                                <mat-datepicker-toggle matSuffix
+                                                       [for]="datepicker"></mat-datepicker-toggle>
+                                <mat-datepicker #datepicker></mat-datepicker>
+                            </mat-form-field>
+                        </mat-list-item> -->
 
+                <mat-list-item>
+                    <mat-form-field>
+                        <mat-select name="venueId"
+                                    placeholder="Сообщество"
+                                    [(ngModel)]="meetup.venueId">
+                            <mat-option *ngFor="let venue of venues | async"
+                                        [value]="venue.id">
+                                {{ venue.name }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-list-item>
+            </mat-list>
+        </mat-grid-tile>
         <mat-grid-tile>
-            <mat-form-field>
-                <input matInput
-                       [matDatepicker]="datepicker">
-                <mat-datepicker-toggle matSuffix
-                                       [for]="datepicker"></mat-datepicker-toggle>
-                <mat-datepicker #datepicker></mat-datepicker>
-            </mat-form-field>
+            <dot-community [community]="communities | async | filterById : meetup.communityId"></dot-community>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <dot-venue [venue]="(venues | async) | filterById : meetup.venueId"></dot-venue>
         </mat-grid-tile>
     </mat-grid-list>
+
+
 </form>
