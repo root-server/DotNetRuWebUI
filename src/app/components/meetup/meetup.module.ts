@@ -1,20 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-    MatGridListModule,
     MatFormFieldModule,
     MatInputModule,
     MatOptionModule,
     MatSelectModule,
     MatDatepickerModule,
     MatListModule,
+    MatStepperModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSlideToggleModule,
 } from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 import { PipesModule } from '@dotnetru/pipes';
 import { CommunityModule } from '@dotnetru/community';
-import { VenueModule } from '@dotnetru/venue';
+import { VenueEditorModule } from '@dotnetru/venue-editor';
+import { FriendModule } from '@dotnetru/friend';
 
 import { MeetupComponent } from './meetup.component';
 
@@ -25,17 +29,23 @@ import { MeetupComponent } from './meetup.component';
     imports: [
         CommonModule,
         FormsModule,
-        MatGridListModule,
+        ReactiveFormsModule,
+
         MatFormFieldModule,
         MatInputModule,
         MatOptionModule,
         MatSelectModule,
         MatDatepickerModule,
         MatListModule,
+        MatStepperModule,
+        MatButtonModule,
+        MatIconModule,
+        MatSlideToggleModule,
 
         PipesModule,
         CommunityModule,
-        VenueModule,
+        VenueEditorModule,
+        FriendModule,
     ],
     exports: [
         MeetupComponent

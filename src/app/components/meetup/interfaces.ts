@@ -1,3 +1,5 @@
+import { Venue } from '@dotnetru/venue-editor';
+
 export interface Meetup {
     id: string;
     name: string;
@@ -5,5 +7,6 @@ export interface Meetup {
     // obsolete
     // date: string;
     venueId: string;
+    venue: Venue;
     friendIds: string[];
 }

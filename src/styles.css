@@ -4,3 +4,9 @@
 html, body, .mat-sidenav-container{
     height: 100%;
 }
+
+.mat-form-field {
+    max-width: 100%;
+    min-width: 240px;
+    padding: 0 4px;
+}

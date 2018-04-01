@@ -1,16 +1,15 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { VenueService } from './venue.service';
-import { Venue } from '.';
 import { Observable } from 'rxjs/Observable';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Friend } from './interfaces';
 
 @Component({
-    selector: 'dot-venue',
-    templateUrl: './venue.component.html',
-    styleUrls: ['./venue.component.css'],
+    selector: 'dot-friend',
+    templateUrl: './friend.component.html',
+    styleUrls: ['./friend.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class VenueComponent {
+export class FriendComponent {
     @Input()
-    public venue: Venue;
+    public friend: Friend;
 }

@@ -19,7 +19,7 @@ import { ToolbarModule } from '@dotnetru/toolbar';
 
 import { CommunityModule } from '@dotnetru/community';
 import { MeetupModule, MeetupComponent } from '@dotnetru/meetup';
-import { VenueModule, VenueComponent } from '@dotnetru/venue';
+import { VenueEditorModule, VenueEditorComponent } from '@dotnetru/venue-editor';
 import { PipesModule } from '@dotnetru/pipes';
 
 
@@ -34,7 +34,7 @@ import { PipesModule } from '@dotnetru/pipes';
     RouterModule.forRoot([
       { path: '', redirectTo: 'meetup', pathMatch: 'full' },
       { path: 'meetup', component: MeetupComponent },
-      { path: 'venue', component: VenueComponent },
+      { path: 'venue', component: VenueEditorComponent },
       { path: '**', redirectTo: 'meetup' },
     ]),
 
@@ -50,7 +50,7 @@ import { PipesModule } from '@dotnetru/pipes';
     PipesModule,
     CommunityModule,
     MeetupModule,
-    VenueModule
+    VenueEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
