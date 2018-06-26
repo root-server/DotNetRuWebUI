@@ -3,7 +3,7 @@
                             linear>
         <mat-step label="Митап"
                   formGroupName="0"
-                  [stepControl]="formArray.get([0])">
+                  [stepControl]="meetupFormGroup()">
             <mat-list>
                 <mat-list-item>
                     <mat-form-field>
@@ -16,7 +16,7 @@
                                 {{ community.name }}
                             </mat-option>
                         </mat-select>
-                        <mat-error *ngIf="formArray.get([0,'communityId']).getError('required')">
+                        <mat-error *ngIf="meetupFormGroup('communityId').getError('required')">
                             Выбери сообщество
                         </mat-error>
                     </mat-form-field>
@@ -28,7 +28,7 @@
                                placeholder="Идентификатор встечи"
                                formControlName="meetupId"
                                [(ngModel)]="meetup.id">
-                        <mat-error *ngIf="formArray.get([0,'meetupId']).getError('required')">
+                        <mat-error *ngIf="meetupFormGroup('meetupId').getError('required')">
                             Назначь идентификатор встречи
                         </mat-error>
                     </mat-form-field>
@@ -40,7 +40,7 @@
                                placeholder="Идентификатор Встечи"
                                formControlName="meetupName"
                                [(ngModel)]="meetup.name">
-                        <mat-error *ngIf="formArray.get([0,'meetupName']).getError('required')">
+                        <mat-error *ngIf="meetupFormGroup('meetupName').getError('required')">
                             Укажи название встречи
                         </mat-error>
                     </mat-form-field>
@@ -50,12 +50,12 @@
                 <button type="button"
                         mat-button
                         matStepperNext
-                        [disabled]="formArray.get([0]).invalid">Next</button>
+                        [disabled]="meetupFormGroup().invalid">Next</button>
             </div>
         </mat-step>
         <mat-step label="Площадка"
                   formGroupName="1"
-                  [stepControl]="formArray.get([1])">
+                  [stepControl]="venueFormGroup()">
             <mat-list>
                 <mat-list-item>
                     <mat-slide-toggle [checked]="needCreateVenue"
@@ -70,14 +70,14 @@
                                placeholder="Идентификатор площадки"
                                formControlName="venueId"
                                [(ngModel)]="meetup.venue.id">
-                        <mat-error *ngIf="formArray.get([1,'venueId']).getError('required')">
+                        <mat-error *ngIf="venueFormGroup('venueId').getError('required')">
                             Укажи идентификатор площадки
                         </mat-error>
                     </mat-form-field>
                 </mat-list-item>
             </mat-list>
             <dot-venue-editor *ngIf="needCreateVenue"
-                              [formGroup]="venueFormGroup"
+                              [formGroup]="venueFormGroup()"
                               [venue]="meetup.venue"></dot-venue-editor>
             <div>
                 <button type="button"
@@ -86,11 +86,23 @@
                 <button type="button"
                         mat-button
                         matStepperNext
-                        [disabled]="formArray.get([1]).invalid">Next</button>
+                        [disabled]="venueFormGroup().invalid">Next</button>
             </div>
         </mat-step>
-        <mat-step>
-
+        <mat-step label="Друзья"
+                  formGroupName="2"
+                  [stepControl]="venueFormGroup()">
+            <button type="button"
+                    mat-button
+                    (click)="meetup.friendIds = meetup.friendIds.concat('')">
+                <mat-icon>add</mat-icon>
+                Добавить друга
+            </button>
+            <div *ngFor="let friendId of meetup.friendIds">
+                <button type="button"
+                        mat-button>Remove</button>
+                <dot-friend-editor></dot-friend-editor>
+            </div>
         </mat-step>
     </mat-horizontal-stepper>
 </form>

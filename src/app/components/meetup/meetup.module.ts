@@ -18,7 +18,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { PipesModule } from '@dotnetru/pipes';
 import { CommunityModule } from '@dotnetru/community';
 import { VenueEditorModule } from '@dotnetru/venue-editor';
-import { FriendModule } from '@dotnetru/friend';
+import { FriendEditorModule } from '@dotnetru/friend-editor';
 
 import { MeetupComponent } from './meetup.component';
 
@@ -45,7 +45,7 @@ import { MeetupComponent } from './meetup.component';
         PipesModule,
         CommunityModule,
         VenueEditorModule,
-        FriendModule,
+        FriendEditorModule,
     ],
     exports: [
         MeetupComponent

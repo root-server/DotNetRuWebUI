@@ -1,13 +1,13 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { DateAdapter } from '@angular/material';
 import * as moment from 'moment';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { Community, CommunityService } from '@dotnetru/community';
 import { Venue, VenueService } from '@dotnetru/venue-editor';
-import { Friend, FriendService } from '@dotnetru/friend';
+import { Friend, FriendService } from '@dotnetru/friend-editor';
 import { Meetup } from './interfaces';
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
 @Component({
     selector: 'dot-meetup',
@@ -25,7 +25,10 @@ export class MeetupComponent {
         communityId: 'SpbDotNet',
         // date: '2018-03-20',
         venue: { id: 'Spb-Selectel' } as Venue,
-        friendIds: ['Microsoft', 'Arcadia']
+        friendIds: [
+            // 'Microsoft',
+            // 'Arcadia'
+        ]
     } as Meetup;
     // public meetupMoment: moment.Moment = moment(this.meetup.date);
     public communities: Observable<Community[]>;
@@ -38,6 +41,7 @@ export class MeetupComponent {
     constructor(
         private fb: FormBuilder,
         private _dateAdapter: DateAdapter<moment.Moment>,
+        private _detector: ChangeDetectorRef,
         communityService: CommunityService,
         venueService: VenueService,
         friendService: FriendService,
@@ -49,13 +53,13 @@ export class MeetupComponent {
         this.createForm();
     }
 
-    get formArray(): FormArray {
+    public get formArray(): FormArray {
         return this.formGroup.get('formArray') as FormArray;
     }
 
-    get venueFormGroup(): FormGroup {
-        return this.formArray.get([1]) as FormGroup;
-    }
+    public meetupFormGroup = (propName?: string): FormGroup => this.getStepProperty(0, propName) as FormGroup;
+
+    public venueFormGroup = (propName?: string): FormGroup => this.getStepProperty(1, propName) as FormGroup;
 
     public changeNeedCreateVenue(): void {
         this.needCreateVenue = !this.needCreateVenue;
@@ -70,6 +74,9 @@ export class MeetupComponent {
                 venueId: ['', Validators.required],
             });
         this.formArray.setControl(1, venueFormGroup);
+        setTimeout(() => {
+            this._detector.detectChanges();
+        }, 0);
     }
 
     private createForm(): void {
@@ -82,14 +89,22 @@ export class MeetupComponent {
                 }),
                 this.fb.group({
                     venueId: ['', Validators.required],
-                })
+                }),
+                this.fb.array([
+                    this.fb.group({
+                        venueId: ['', Validators.required],
+                    })
+                ])
             ]),
         });
     }
 
-    //      = new FormGroup({
-    //     formArray: new FormArray([
+    private getStepProperty(stepIndex: number, propName?: string): AbstractControl {
+        const res = propName
+            ? this.formArray.get([stepIndex, propName])
+            : this.formArray.get([stepIndex]);
+        return res;
+    }
 
-    //     ])
-    // });
+
 }

@@ -20,6 +20,7 @@ import { ToolbarModule } from '@dotnetru/toolbar';
 import { CommunityModule } from '@dotnetru/community';
 import { MeetupModule, MeetupComponent } from '@dotnetru/meetup';
 import { VenueEditorModule, VenueEditorComponent } from '@dotnetru/venue-editor';
+import { FriendEditorModule, FriendEditorComponent } from './components/friend-editor';
 import { PipesModule } from '@dotnetru/pipes';
 
 
@@ -35,6 +36,7 @@ import { PipesModule } from '@dotnetru/pipes';
       { path: '', redirectTo: 'meetup', pathMatch: 'full' },
       { path: 'meetup', component: MeetupComponent },
       { path: 'venue', component: VenueEditorComponent },
+      { path: 'friend', component: FriendEditorComponent },
       { path: '**', redirectTo: 'meetup' },
     ]),
 
@@ -50,7 +52,8 @@ import { PipesModule } from '@dotnetru/pipes';
     PipesModule,
     CommunityModule,
     MeetupModule,
-    VenueEditorModule
+    VenueEditorModule,
+    FriendEditorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
