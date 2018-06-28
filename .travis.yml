@@ -1,21 +1,11 @@
 language: node_js
-dist: trusty
-sudo: required
+
 node_js:
  - "8"
-
-addons:
-  chrome: stable
-
-before_install:
- - export DISPLAY=:99.0
- - sh -e /etc/init.d/xvfb start
- - sleep 3 # give xvfb some time to start
 
 install:
   - npm install
 
 script:
   - npm run lint
-  - npm run testCI
   - npm run build
